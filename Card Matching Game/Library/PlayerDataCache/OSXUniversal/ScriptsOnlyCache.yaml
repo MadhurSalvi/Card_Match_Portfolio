@@ -40,6 +40,15 @@ ScriptsOnlyBuild:
   - assembly: Assembly-CSharp
     fullTypeName: GameManager
     methodName: ResetGame
+  - assembly: Assembly-CSharp
+    fullTypeName: GameManager
+    methodName: GameQuit
+  - assembly: Assembly-CSharp
+    fullTypeName: GameManager
+    methodName: GameQuit
+  - assembly: Assembly-CSharp
+    fullTypeName: GameManager
+    methodName: ResetGame
   sceneClasses:
     Assets/Scenes/Card Matching Game.unity:
     - Class: 1
@@ -252,7 +261,7 @@ ScriptsOnlyBuild:
     className: UnityOnBecameVisibleMessageListener
   - hash:
       serializedVersion: 2
-      Hash: 8f466ebfdae988e30cfe733288f13736
+      Hash: a77a4e88da2f14a00c876ab16572540d
     assemblyName: Assembly-CSharp
     namespaceName: 
     className: GameManager
@@ -992,5 +1001,5 @@ ScriptsOnlyBuild:
   scenePathNames:
   - Assets/Scenes/Main Scene.unity
   - Assets/Scenes/Card Matching Game.unity
-  playerPath: /Users/madhursalvi/Desktop/Unity3d Projects/Build_Card/Windows:Mac/Card
-    Matching Game.app
+  playerPath: /Users/madhursalvi/Desktop/Unity3d Projects/Builds/Mac Build/Card Matching
+    Game.app

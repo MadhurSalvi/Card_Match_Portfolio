@@ -1,14 +1,15 @@
 using UnityEngine;
 using System.Collections;
 
+// Handles individual card behavior
 public class Card : MonoBehaviour
 {
-    [Header("Visual Settings")]
+    [Header("Rendering")]
     [SerializeField] private SpriteRenderer frontRenderer;
     [SerializeField] private SpriteRenderer backRenderer;
     [SerializeField] private float flipDuration = 0.5f;
 
-    [Header("Audio")]
+    [Header("Sound")]
     public AudioClip flipSound;
 
     private int cardId;
@@ -19,6 +20,7 @@ public class Card : MonoBehaviour
     public int CardId => cardId;
     public bool IsFlipped => isFlipped;
 
+    // Set visuals and identity
     public void SetCard(Sprite frontSprite, int id)
     {
         frontRenderer.sprite = frontSprite;
@@ -29,6 +31,7 @@ public class Card : MonoBehaviour
         IsMatched = false;
     }
 
+    // On player click
     private void OnMouseDown()
     {
         if (!isFlipping && !GameManager.Instance.IsWaiting && !isFlipped)
@@ -38,42 +41,45 @@ public class Card : MonoBehaviour
         }
     }
 
+    // Animate card rotation
     public IEnumerator FlipCard(bool showFront)
     {
         isFlipping = true;
-        float elapsedTime = 0f;
+        float elapsed = 0f;
 
         if (flipSound != null && GameManager.Instance != null)
             GameManager.Instance.PlaySound(flipSound);
 
-        Quaternion startRotation = transform.rotation;
-        Quaternion endRotation = Quaternion.Euler(0, showFront ? 180 : 0, 0);
+        Quaternion startRot = transform.rotation;
+        Quaternion endRot = Quaternion.Euler(0, showFront ? 180 : 0, 0);
 
-        while (elapsedTime < flipDuration)
+        while (elapsed < flipDuration)
         {
-            transform.rotation = Quaternion.Lerp(startRotation, endRotation, elapsedTime / flipDuration);
+            transform.rotation = Quaternion.Lerp(startRot, endRot, elapsed / flipDuration);
 
-            if (elapsedTime >= flipDuration / 2)
+            if (elapsed >= flipDuration / 2)
             {
                 backRenderer.enabled = !showFront;
                 frontRenderer.enabled = showFront;
             }
 
-            elapsedTime += Time.deltaTime;
+            elapsed += Time.deltaTime;
             yield return null;
         }
 
-        transform.rotation = endRotation;
+        transform.rotation = endRot;
         isFlipped = showFront;
         isFlipping = false;
     }
 
+    // Flip card back
     public void HideCard()
     {
         if (isFlipped && !isFlipping)
             StartCoroutine(FlipCard(false));
     }
 
+    // Instantly reset to back side
     public void HideCardInstant()
     {
         backRenderer.enabled = true;
@@ -81,6 +87,7 @@ public class Card : MonoBehaviour
         isFlipped = false;
     }
 
+    // Visually and logically set as matched
     public void SetMatched()
     {
         IsMatched = true;
@@ -89,97 +96,12 @@ public class Card : MonoBehaviour
         backRenderer.enabled = false;
     }
 
+    // Disable interactions on matched cards
     public void DisableCard()
     {
         if (TryGetComponent<Collider2D>(out Collider2D col))
             col.enabled = false;
+
         IsMatched = true;
     }
 }
-
-
-
-
-// using UnityEngine;
-// using System.Collections;
-
-// public class Card : MonoBehaviour
-// {
-//     [Header("Visual Settings")]
-//     [SerializeField] private SpriteRenderer frontRenderer;  
-//     [SerializeField] private SpriteRenderer backRenderer;
-//     [SerializeField] private float flipDuration = 0.5f;
-
-//     [Header("Audio")]
-//     public AudioClip flipSound;
-
-//     private int cardId;
-//     private bool isFlipping = false;
-//     private bool isFlipped = false;
-
-//     public int CardId { get { return cardId; } }
-//     public bool IsFlipped { get { return isFlipped; } }
-
-//     public void SetCard(Sprite frontSprite, int id)
-//     {
-//         frontRenderer.sprite = frontSprite;
-//         cardId = id;
-//         backRenderer.enabled = true;
-//         frontRenderer.enabled = false;
-//     }
-
-//     private void OnMouseDown()
-//     {
-//         if (!isFlipping && !GameManager.Instance.IsWaiting && !isFlipped)
-//         {
-//             StartCoroutine(FlipCard(true));
-//             GameManager.Instance.CardClicked(this);
-//         }
-//     }
-
-//     public IEnumerator FlipCard(bool showFront)
-//     {
-//         isFlipping = true;
-//         float elapsedTime = 0f;
-
-//         // Play sound if available
-//         if (flipSound != null && GameManager.Instance != null)
-//         {
-//             GameManager.Instance.PlaySound(flipSound);
-//         }
-
-//         Quaternion startRotation = transform.rotation;
-//         Quaternion endRotation = Quaternion.Euler(0, showFront ? 180 : 0, 0);
-
-//         while (elapsedTime < flipDuration)
-//         {
-//             transform.rotation = Quaternion.Lerp(
-//                 startRotation,
-//                 endRotation,
-//                 elapsedTime / flipDuration
-//             );
-
-//             // Switch sprite at halfway point
-//             if (elapsedTime >= flipDuration / 2)
-//             {
-//                 backRenderer.enabled = !showFront;
-//                 frontRenderer.enabled = showFront;
-//             }
-
-//             elapsedTime += Time.deltaTime;
-//             yield return null;
-//         }
-
-//         transform.rotation = endRotation;
-//         isFlipped = showFront;
-//         isFlipping = false;
-//     }
-
-//     public void HideCard()
-//     {
-//         if (isFlipped && !isFlipping)
-//         {
-//             StartCoroutine(FlipCard(false));
-//         }
-//     }
-// }

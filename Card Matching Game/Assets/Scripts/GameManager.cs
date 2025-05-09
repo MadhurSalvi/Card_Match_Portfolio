@@ -3,44 +3,50 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
 
+// Main class controlling the card matching game
 public class GameManager : MonoBehaviour
 {
+    // Singleton instance for global access
     public static GameManager Instance { get; private set; }
 
-    [Header("Card Settings")]
-    public GameObject cardPrefab;
-    public Sprite[] cardSprites;
-    public Vector2 gridSize = new Vector2(8, 8);
-    private float cardSize, spacing;
+    [Header("Card Configuration")]
+    public GameObject cardPrefab;          // Prefab for each card
+    public Sprite[] cardSprites;           // Array of images for matching
+    public Vector2 gridSize = new Vector2(8, 8); // Grid dimension
+    private float cardSize, spacing;       // Calculated size and spacing
 
-    [Header("Game Settings")]
+    [Header("Gameplay Parameters")]
     public int score = 0;
     public int matchpoint = 100;
     public int mismatchPenalty = 10;
     public int comboMultiplier = 1;
     private int consecutiveMatches = 0;
     private int matchesFound = 0;
-    public bool IsWaiting { get; private set; }
+    public bool IsWaiting { get; private set; } // Lock during match check
 
-    [Header("UI Elements")]
+    [Header("UI References")]
     public Text scoreText;
     public Text highScoreText;
     public Text ComboScore;
     public GameObject gameOverPanel;
     public Text completionText;
 
-    [Header("Audio")]
+
+    public GameObject Panel;
+
+    [Header("Audio Clips")]
     public AudioClip matchSound;
     public AudioClip mismatchSound;
     public AudioClip gameOverSound;
     private AudioSource audioSource;
 
-    private List<Card> cards = new List<Card>();
-    private List<Card> flippedCards = new List<Card>();
+    private List<Card> cards = new List<Card>();         // All cards in scene
+    private List<Card> flippedCards = new List<Card>();  // Cards currently face-up
 
-    [Header("Save Keys")]
-    private const string SaveKey = "GameSave";
+    [Header("Save System")]
+    private const string SaveKey = "GameSave"; // PlayerPrefs key
 
+    // Data structure to store save information
     [System.Serializable]
     class SaveData
     {
@@ -52,11 +58,13 @@ public class GameManager : MonoBehaviour
 
     void Awake()
     {
+        // Singleton setup
         if (Instance == null)
             Instance = this;
-        else if (Instance != this)
+        else
             Destroy(gameObject);
 
+        // Ensure audio source is present
         if (!TryGetComponent<AudioSource>(out audioSource))
         {
             audioSource = gameObject.AddComponent<AudioSource>();
@@ -74,15 +82,18 @@ public class GameManager : MonoBehaviour
         if (gameOverPanel != null)
             gameOverPanel.SetActive(false);
 
+        // Delay load to ensure cards exist
         Invoke(nameof(LoadGame), 0.5f);
     }
 
+    // Ensure number of sprites is even (pairs)
     void ValidateSprites()
     {
         if (cardSprites.Length % 2 != 0)
-            Debug.LogError("Need even number of sprites for matching pairs!");
+            Debug.LogError("You need an even number of sprites for pairing.");
     }
 
+    // Calculate appropriate card size based on screen and grid
     void CalculateCardDimensions()
     {
         float screenHeight = Camera.main.orthographicSize * 2;
@@ -94,6 +105,7 @@ public class GameManager : MonoBehaviour
         spacing = cardSize * 0.15f;
     }
 
+    // Spawn and lay out all cards in the grid
     void GenerateCardGrid()
     {
         foreach (var card in cards)
@@ -103,11 +115,12 @@ public class GameManager : MonoBehaviour
         int totalCards = (int)(gridSize.x * gridSize.y);
         if (totalCards % 2 != 0)
         {
-            Debug.LogError("Grid must have even number of cards!");
+            Debug.LogError("Grid must have an even number of cards.");
             gridSize = new Vector2(4, 4);
             totalCards = 16;
         }
 
+        // Generate card pairs and shuffle
         List<int> cardIds = new List<int>();
         for (int i = 0; i < totalCards / 2; i++)
         {
@@ -140,6 +153,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    // Randomize card order
     List<T> ShuffleList<T>(List<T> list)
     {
         System.Random rng = new System.Random();
@@ -148,13 +162,14 @@ public class GameManager : MonoBehaviour
         {
             n--;
             int k = rng.Next(n + 1);
-            T value = list[k];
+            T temp = list[k];
             list[k] = list[n];
-            list[n] = value;
+            list[n] = temp;
         }
         return list;
     }
 
+    // Handle card click from Card script
     public void CardClicked(Card card)
     {
         if (IsWaiting || flippedCards.Contains(card) || card.IsFlipped)
@@ -166,6 +181,7 @@ public class GameManager : MonoBehaviour
             StartCoroutine(CheckMatch());
     }
 
+    // Coroutine to handle matching logic
     IEnumerator CheckMatch()
     {
         IsWaiting = true;
@@ -173,13 +189,13 @@ public class GameManager : MonoBehaviour
 
         while (flippedCards.Count >= 2)
         {
-            Card cardA = flippedCards[0];
-            Card cardB = flippedCards[1];
+            Card a = flippedCards[0];
+            Card b = flippedCards[1];
             flippedCards.RemoveRange(0, 2);
 
-            bool isMatch = cardA.CardId == cardB.CardId;
+            bool match = a.CardId == b.CardId;
 
-            if (isMatch)
+            if (match)
             {
                 score += matchpoint * comboMultiplier;
                 consecutiveMatches++;
@@ -189,8 +205,8 @@ public class GameManager : MonoBehaviour
                 if (consecutiveMatches >= 2)
                     comboMultiplier = Mathf.Min(comboMultiplier + 1, 3);
 
-                cardA.DisableCard();
-                cardB.DisableCard();
+                a.DisableCard();
+                b.DisableCard();
             }
             else
             {
@@ -199,8 +215,8 @@ public class GameManager : MonoBehaviour
                 comboMultiplier = 1;
                 PlaySound(mismatchSound);
 
-                cardA.HideCard();
-                cardB.HideCard();
+                a.HideCard();
+                b.HideCard();
             }
 
             UpdateScoreUI();
@@ -218,12 +234,14 @@ public class GameManager : MonoBehaviour
         SaveGame();
     }
 
+    // Play sound clips
     public void PlaySound(AudioClip clip)
     {
         if (audioSource != null && clip != null)
             audioSource.PlayOneShot(clip);
     }
 
+    // Refresh score display
     void UpdateScoreUI()
     {
         if (scoreText != null)
@@ -231,12 +249,14 @@ public class GameManager : MonoBehaviour
         ComboScore.text = "Combo: x" + comboMultiplier;
     }
 
+    // Show stored high score
     void DisplayHighScore()
     {
         if (highScoreText != null)
             highScoreText.text = "High Score: " + PlayerPrefs.GetInt("HighScore", 0);
     }
 
+    // Save new high score
     void CheckHighScore()
     {
         int highScore = PlayerPrefs.GetInt("HighScore", 0);
@@ -248,15 +268,22 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    // End game screen
     void ShowGameComplete()
     {
         if (gameOverPanel != null)
         {
             gameOverPanel.SetActive(true);
             completionText.text = "Game Completed! Press Restart to Play again.";
+
+            Panel.SetActive(false);
         }
+
+        PlayerPrefs.DeleteKey(SaveKey); // Clear saved game data
+
     }
 
+    // Reset all game values and cards
     public void ResetGame()
     {
         PlayerPrefs.DeleteKey(SaveKey);
@@ -269,19 +296,21 @@ public class GameManager : MonoBehaviour
         if (gameOverPanel != null)
             gameOverPanel.SetActive(false);
 
+        Panel.SetActive(true);
         GenerateCardGrid();
         UpdateScoreUI();
     }
 
+    // Exit game/application
     public void GameQuit()
     {
         Application.Quit();
-
 #if UNITY_EDITOR
         UnityEditor.EditorApplication.isPlaying = false;
 #endif
     }
 
+    // Save current progress to PlayerPrefs
     void SaveGame()
     {
         List<int> matched = new List<int>();
@@ -300,6 +329,7 @@ public class GameManager : MonoBehaviour
         PlayerPrefs.Save();
     }
 
+    // Load previously saved data
     void LoadGame()
     {
         if (!PlayerPrefs.HasKey(SaveKey))
@@ -328,280 +358,3 @@ public class GameManager : MonoBehaviour
         UpdateScoreUI();
     }
 }
-
-
-
-
-
-// using UnityEngine;
-// using System.Collections;
-// using System.Collections.Generic;
-// using UnityEngine.UI;
-
-// public class GameManager : MonoBehaviour
-// {
-//     public static GameManager Instance { get; private set; }
-
-//     [Header("Card Settings")]
-//     public GameObject cardPrefab;
-//     public Sprite[] cardSprites;
-//     public Vector2 gridSize = new Vector2(8, 8);
-//     private float cardSize, spacing;
-
-//     [Header("Game Settings")]
-//     public int score = 0;
-//     public int matchpoint = 100; //base scoring system
-//     public int mismatchPenalty = 10;
-//     public int comboMultiplier = 1;
-//     private int consecutiveMatches = 0;
-//     private int matchesFound = 0;
-//     public bool IsWaiting { get; private set; }
-
-//     [Header("UI Elements")]
-//     public Text scoreText;
-//     public Text highScoreText;
-//     public Text ComboScore;
-//     public GameObject gameOverPanel;
-//     public Text completionText;
-
-//     [Header("Audio")]
-//     public AudioClip matchSound;
-//     public AudioClip mismatchSound;
-//     public AudioClip gameOverSound;
-//     private AudioSource audioSource;
-
-//     private List<Card> cards = new List<Card>();
-//     private List<Card> flippedCards = new List<Card>();
-
-//     void Awake()
-//     {
-//         if (Instance == null)
-//             Instance = this;
-//         else if (Instance != this)
-//             Destroy(gameObject);
-
-//         // Add AudioSource if not present
-//         if (!TryGetComponent<AudioSource>(out audioSource))
-//         {
-//             audioSource = gameObject.AddComponent<AudioSource>();
-//             audioSource.playOnAwake = false;
-//         }
-
-//     }
-
-//     void Start()
-//     {
-//         ValidateSprites();
-//         CalculateCardDimensions();
-//         GenerateCardGrid();
-//         DisplayHighScore();
-
-//         if (gameOverPanel != null)
-//             gameOverPanel.SetActive(false);
-//     }
-
-//     void ValidateSprites()
-//     {
-//         if (cardSprites.Length % 2 != 0)
-//             Debug.LogError("Need even number of sprites for matching pairs!");
-//     }
-
-//     void CalculateCardDimensions()
-//     {
-//         float screenHeight = Camera.main.orthographicSize * 2;
-//         float screenWidth = screenHeight * Camera.main.aspect;
-
-//         float maxCardWidth = (screenWidth * 0.9f) / gridSize.x;
-//         float maxCardHeight = (screenHeight * 0.8f) / gridSize.y;
-//         cardSize = Mathf.Min(maxCardWidth, maxCardHeight);
-//         spacing = cardSize * 0.15f;
-//     }
-
-//     void GenerateCardGrid()
-//     {
-//         // Clear existing cards
-//         foreach (var card in cards)
-//             Destroy(card.gameObject);
-//         cards.Clear();
-
-//         int totalCards = (int)(gridSize.x * gridSize.y);
-//         if (totalCards % 2 != 0)
-//         {
-//             Debug.LogError("Grid must have even number of cards!");
-//             gridSize = new Vector2(4, 4);
-//             totalCards = 16;
-//         }
-
-//         // Create card pairs
-//         List<int> cardIds = new List<int>();
-//         for (int i = 0; i < totalCards / 2; i++)
-//         {
-//             cardIds.Add(i);
-//             cardIds.Add(i); // Add pair
-//         }
-
-//         // Shuffle cards
-//         cardIds = ShuffleList(cardIds);
-
-//         // Calculate grid position
-//         Vector2 startPos = new Vector2(
-//             -((gridSize.x - 1) * (cardSize + spacing)) / 2,
-//             -((gridSize.y - 1) * (cardSize + spacing)) / 2
-//         );
-
-//         // Create cards
-//         for (int i = 0; i < cardIds.Count; i++)
-//         {
-//             GameObject newCard = Instantiate(cardPrefab, transform);
-//             newCard.transform.localScale = Vector3.one * cardSize;
-
-//             // Position card
-//             int row = i / (int)gridSize.x;
-//             int col = i % (int)gridSize.x;
-//             newCard.transform.position = new Vector2(
-//                 startPos.x + col * (cardSize + spacing),
-//                 startPos.y + row * (cardSize + spacing)
-//             );
-
-//             // Set card properties
-//             Card card = newCard.GetComponent<Card>();
-//             card.SetCard(cardSprites[cardIds[i]], cardIds[i]);
-//             cards.Add(card);
-//         }
-//     }
-
-//     List<T> ShuffleList<T>(List<T> list)
-//     {
-//         System.Random rng = new System.Random();
-//         int n = list.Count;
-//         while (n > 1)
-//         {
-//             n--;
-//             int k = rng.Next(n + 1);
-//             T value = list[k];
-//             list[k] = list[n];
-//             list[n] = value;
-//         }
-//         return list;
-//     }
-
-//     public void CardClicked(Card card)
-//     {
-//         if (IsWaiting || flippedCards.Contains(card))
-//             return;
-
-//         flippedCards.Add(card);
-
-//         if (flippedCards.Count == 2)
-//             StartCoroutine(CheckMatch());
-//     }
-
-//     IEnumerator CheckMatch()
-//     {
-//         IsWaiting = true;
-//         yield return new WaitForSeconds(0.5f);
-
-//         bool isMatch = flippedCards[0].CardId == flippedCards[1].CardId;
-
-//         if (isMatch)
-//         {
-//             // Correct match
-//             score += matchpoint * comboMultiplier;
-//             consecutiveMatches++;
-//             matchesFound++;
-//             PlaySound(matchSound);
-
-//             if (consecutiveMatches >= 2)
-//                 comboMultiplier = Mathf.Min(comboMultiplier + 1, 3);
-
-//             foreach (var card in flippedCards)
-//                 card.GetComponent<Collider2D>().enabled = false;
-//         }
-//         else
-//         {
-//             // Wrong match
-//             score -= mismatchPenalty;
-//             consecutiveMatches = 0;
-//             comboMultiplier = 1;
-//             PlaySound(mismatchSound);
-
-//             foreach (var card in flippedCards)
-//                 card.HideCard();
-//         }
-
-//         flippedCards.Clear();
-//         IsWaiting = false;
-//         UpdateScoreUI();
-
-//         // Check for game completion
-//         if (matchesFound == (gridSize.x * gridSize.y) / 2)
-//         {
-//             PlaySound(gameOverSound);
-//             CheckHighScore();
-//             ShowGameComplete();
-//         }
-//     }
-
-//     public void PlaySound(AudioClip clip)
-//     {
-//         if (audioSource != null && clip != null)
-//             audioSource.PlayOneShot(clip);
-//     }
-
-//     void UpdateScoreUI()
-//     {
-//         if (scoreText != null)
-//             scoreText.text = "Score: " + score;
-//             ComboScore.text = "Combo: x" + comboMultiplier + "";
-//     }
-
-//     void DisplayHighScore()
-//     {
-//         if (highScoreText != null)
-//             highScoreText.text = "High Score: " + PlayerPrefs.GetInt("HighScore", 0);
-//     }
-
-//     void CheckHighScore()
-//     {
-//         int highScore = PlayerPrefs.GetInt("HighScore", 0);
-//         if (score > highScore)
-//         {
-//             PlayerPrefs.SetInt("HighScore", score);
-//             PlayerPrefs.Save();
-//             DisplayHighScore();
-//         }
-//     }
-
-//     void ShowGameComplete()
-//     {
-//         if (gameOverPanel != null)
-//         {
-//             gameOverPanel.SetActive(true);
-//             completionText.text = "Game Completed! Press Restart to Play again.";
-//         }
-//     }
-
-//     public void ResetGame()
-//     {
-//         score = 0;
-//         comboMultiplier = 1;
-//         consecutiveMatches = 0;
-//         matchesFound = 0;
-
-//         if (gameOverPanel != null)
-//             gameOverPanel.SetActive(false);
-
-//         GenerateCardGrid();
-//         UpdateScoreUI();
-//     }
-
-
-//     public void GameQuit()
-//     {
-//         Application.Quit();
-
-//         #if UNITY_EDITOR
-//                 UnityEditor.EditorApplication.isPlaying = false;
-//         #endif
-//     }
-// }

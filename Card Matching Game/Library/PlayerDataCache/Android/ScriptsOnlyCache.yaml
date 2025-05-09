@@ -39,6 +39,12 @@ ScriptsOnlyBuild:
     methodName: PlayGame
   - assembly: Assembly-CSharp
     fullTypeName: GameManager
+    methodName: ResetGame
+  - assembly: Assembly-CSharp
+    fullTypeName: GameManager
+    methodName: GameQuit
+  - assembly: Assembly-CSharp
+    fullTypeName: GameManager
     methodName: GameQuit
   - assembly: Assembly-CSharp
     fullTypeName: GameManager
@@ -255,7 +261,7 @@ ScriptsOnlyBuild:
     className: UnityOnBecameVisibleMessageListener
   - hash:
       serializedVersion: 2
-      Hash: 8f466ebfdae988e30cfe733288f13736
+      Hash: a77a4e88da2f14a00c876ab16572540d
     assemblyName: Assembly-CSharp
     namespaceName: 
     className: GameManager
