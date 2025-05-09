@@ -4,7 +4,7 @@ using System.Collections;
 public class Card : MonoBehaviour
 {
     [Header("Visual Settings")]
-    [SerializeField] private SpriteRenderer frontRenderer;
+    [SerializeField] private SpriteRenderer frontRenderer;  
     [SerializeField] private SpriteRenderer backRenderer;
     [SerializeField] private float flipDuration = 0.5f;
 
@@ -15,8 +15,8 @@ public class Card : MonoBehaviour
     private bool isFlipping = false;
     private bool isFlipped = false;
 
-    public int CardId => cardId;
-    public bool IsFlipped => isFlipped;
+    public int CardId { get { return cardId; } }
+    public bool IsFlipped { get { return isFlipped; } }
 
     public void SetCard(Sprite frontSprite, int id)
     {

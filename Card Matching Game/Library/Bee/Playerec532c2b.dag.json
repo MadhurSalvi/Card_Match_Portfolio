@@ -341,7 +341,12 @@
         333,
         334,
         335,
-        336
+        336,
+        337,
+        338,
+        339,
+        340,
+        341
       ],
       "OverwriteOutputs": false,
       "DebugActionIndex": 0
@@ -8650,7 +8655,7 @@
       "DisplayName": "Copying ic_launcher_foreground.png",
       "ActionType": "CopyFiles",
       "Inputs": [
-        "/Applications/Unity/Hub/Editor/2022.3.61f1/PlaybackEngines/AndroidPlayer/Apk/res/mipmap-mdpi/ic_launcher_foreground.png"
+        "Temp/StagingArea/res.mdpi.adaptive_icon-1.png"
       ],
       "Outputs": [
         "/Users/madhursalvi/Desktop/Unity3d Projects/Card Game/Card_Match_Portfolio/Card Matching Game/Library/Bee/Android/Prj/Mono2x/Gradle/launcher/src/main/res/mipmap-mdpi/ic_launcher_foreground.png"
@@ -8850,6 +8855,66 @@
       "DebugActionIndex": 321
     },
     {
+      "Annotation": "CopyFiles /Users/madhursalvi/Desktop/Unity3d Projects/Card Game/Card_Match_Portfolio/Card Matching Game/Library/Bee/Android/Prj/Mono2x/Gradle/launcher/src/main/res/mipmap-ldpi/ic_launcher_foreground.png",
+      "DisplayName": "Copying ic_launcher_foreground.png",
+      "ActionType": "CopyFiles",
+      "Inputs": [
+        "Temp/StagingArea/res.ldpi.adaptive_icon-1.png"
+      ],
+      "Outputs": [
+        "/Users/madhursalvi/Desktop/Unity3d Projects/Card Game/Card_Match_Portfolio/Card Matching Game/Library/Bee/Android/Prj/Mono2x/Gradle/launcher/src/main/res/mipmap-ldpi/ic_launcher_foreground.png"
+      ],
+      "DebugActionIndex": 322
+    },
+    {
+      "Annotation": "CopyFiles /Users/madhursalvi/Desktop/Unity3d Projects/Card Game/Card_Match_Portfolio/Card Matching Game/Library/Bee/Android/Prj/Mono2x/Gradle/launcher/src/main/res/mipmap-hdpi/ic_launcher_foreground.png",
+      "DisplayName": "Copying ic_launcher_foreground.png",
+      "ActionType": "CopyFiles",
+      "Inputs": [
+        "Temp/StagingArea/res.hdpi.adaptive_icon-1.png"
+      ],
+      "Outputs": [
+        "/Users/madhursalvi/Desktop/Unity3d Projects/Card Game/Card_Match_Portfolio/Card Matching Game/Library/Bee/Android/Prj/Mono2x/Gradle/launcher/src/main/res/mipmap-hdpi/ic_launcher_foreground.png"
+      ],
+      "DebugActionIndex": 323
+    },
+    {
+      "Annotation": "CopyFiles /Users/madhursalvi/Desktop/Unity3d Projects/Card Game/Card_Match_Portfolio/Card Matching Game/Library/Bee/Android/Prj/Mono2x/Gradle/launcher/src/main/res/mipmap-xhdpi/ic_launcher_foreground.png",
+      "DisplayName": "Copying ic_launcher_foreground.png",
+      "ActionType": "CopyFiles",
+      "Inputs": [
+        "Temp/StagingArea/res.xhdpi.adaptive_icon-1.png"
+      ],
+      "Outputs": [
+        "/Users/madhursalvi/Desktop/Unity3d Projects/Card Game/Card_Match_Portfolio/Card Matching Game/Library/Bee/Android/Prj/Mono2x/Gradle/launcher/src/main/res/mipmap-xhdpi/ic_launcher_foreground.png"
+      ],
+      "DebugActionIndex": 324
+    },
+    {
+      "Annotation": "CopyFiles /Users/madhursalvi/Desktop/Unity3d Projects/Card Game/Card_Match_Portfolio/Card Matching Game/Library/Bee/Android/Prj/Mono2x/Gradle/launcher/src/main/res/mipmap-xxhdpi/ic_launcher_foreground.png",
+      "DisplayName": "Copying ic_launcher_foreground.png",
+      "ActionType": "CopyFiles",
+      "Inputs": [
+        "Temp/StagingArea/res.xxhdpi.adaptive_icon-1.png"
+      ],
+      "Outputs": [
+        "/Users/madhursalvi/Desktop/Unity3d Projects/Card Game/Card_Match_Portfolio/Card Matching Game/Library/Bee/Android/Prj/Mono2x/Gradle/launcher/src/main/res/mipmap-xxhdpi/ic_launcher_foreground.png"
+      ],
+      "DebugActionIndex": 325
+    },
+    {
+      "Annotation": "CopyFiles /Users/madhursalvi/Desktop/Unity3d Projects/Card Game/Card_Match_Portfolio/Card Matching Game/Library/Bee/Android/Prj/Mono2x/Gradle/launcher/src/main/res/mipmap-xxxhdpi/ic_launcher_foreground.png",
+      "DisplayName": "Copying ic_launcher_foreground.png",
+      "ActionType": "CopyFiles",
+      "Inputs": [
+        "Temp/StagingArea/res.xxxhdpi.adaptive_icon-1.png"
+      ],
+      "Outputs": [
+        "/Users/madhursalvi/Desktop/Unity3d Projects/Card Game/Card_Match_Portfolio/Card Matching Game/Library/Bee/Android/Prj/Mono2x/Gradle/launcher/src/main/res/mipmap-xxxhdpi/ic_launcher_foreground.png"
+      ],
+      "DebugActionIndex": 326
+    },
+    {
       "Annotation": "CopyFiles /Users/madhursalvi/Desktop/Unity3d Projects/Card Game/Card_Match_Portfolio/Card Matching Game/Library/Bee/Android/Prj/Mono2x/Gradle/unityLibrary/src/main/jniLibs/armeabi-v7a/libmain.so",
       "DisplayName": "Copying libmain.so",
       "ActionType": "CopyFiles",
@@ -8859,7 +8924,7 @@
       "Outputs": [
         "/Users/madhursalvi/Desktop/Unity3d Projects/Card Game/Card_Match_Portfolio/Card Matching Game/Library/Bee/Android/Prj/Mono2x/Gradle/unityLibrary/src/main/jniLibs/armeabi-v7a/libmain.so"
       ],
-      "DebugActionIndex": 322
+      "DebugActionIndex": 327
     },
     {
       "Annotation": "SourceBuildPlayerFiles",
@@ -8867,11 +8932,11 @@
       "Inputs": [],
       "Outputs": [],
       "ToBuildDependencies": [
-        322,
-        324
+        327,
+        329
       ],
       "OverwriteOutputs": false,
-      "DebugActionIndex": 323
+      "DebugActionIndex": 328
     },
     {
       "Annotation": "CopyFiles /Users/madhursalvi/Desktop/Unity3d Projects/Card Game/Card_Match_Portfolio/Card Matching Game/Library/Bee/Android/Prj/Mono2x/Gradle/unityLibrary/src/main/jniLibs/armeabi-v7a/libunity.so",
@@ -8883,7 +8948,7 @@
       "Outputs": [
         "/Users/madhursalvi/Desktop/Unity3d Projects/Card Game/Card_Match_Portfolio/Card Matching Game/Library/Bee/Android/Prj/Mono2x/Gradle/unityLibrary/src/main/jniLibs/armeabi-v7a/libunity.so"
       ],
-      "DebugActionIndex": 324
+      "DebugActionIndex": 329
     },
     {
       "Annotation": "CopyFiles /Users/madhursalvi/Desktop/Unity3d Projects/Card Game/Card_Match_Portfolio/Card Matching Game/Library/Bee/Android/Prj/Mono2x/Gradle/unityLibrary/src/main/jniLibs/armeabi-v7a/libmonobdwgc-2.0.so",
@@ -8895,7 +8960,7 @@
       "Outputs": [
         "/Users/madhursalvi/Desktop/Unity3d Projects/Card Game/Card_Match_Portfolio/Card Matching Game/Library/Bee/Android/Prj/Mono2x/Gradle/unityLibrary/src/main/jniLibs/armeabi-v7a/libmonobdwgc-2.0.so"
       ],
-      "DebugActionIndex": 325
+      "DebugActionIndex": 330
     },
     {
       "Annotation": "CopyFiles /Users/madhursalvi/Desktop/Unity3d Projects/Card Game/Card_Match_Portfolio/Card Matching Game/Library/Bee/Android/Prj/Mono2x/Gradle/unityLibrary/src/main/jniLibs/armeabi-v7a/libMonoPosixHelper.so",
@@ -8907,7 +8972,7 @@
       "Outputs": [
         "/Users/madhursalvi/Desktop/Unity3d Projects/Card Game/Card_Match_Portfolio/Card Matching Game/Library/Bee/Android/Prj/Mono2x/Gradle/unityLibrary/src/main/jniLibs/armeabi-v7a/libMonoPosixHelper.so"
       ],
-      "DebugActionIndex": 326
+      "DebugActionIndex": 331
     },
     {
       "Annotation": "CopyFiles /Users/madhursalvi/Desktop/Unity3d Projects/Card Game/Card_Match_Portfolio/Card Matching Game/Library/Bee/Android/Prj/Mono2x/Gradle/unityLibrary/src/main/jniLibs/armeabi-v7a/libmono-native.so",
@@ -8919,7 +8984,7 @@
       "Outputs": [
         "/Users/madhursalvi/Desktop/Unity3d Projects/Card Game/Card_Match_Portfolio/Card Matching Game/Library/Bee/Android/Prj/Mono2x/Gradle/unityLibrary/src/main/jniLibs/armeabi-v7a/libmono-native.so"
       ],
-      "DebugActionIndex": 327
+      "DebugActionIndex": 332
     },
     {
       "Annotation": "WriteText Library/Bee/artifacts/csharpactions/LauncherManifestDiag.txt_zvqu.info",
@@ -8932,7 +8997,7 @@
       "Outputs": [
         "Library/Bee/artifacts/csharpactions/LauncherManifestDiag.txt_zvqu.info"
       ],
-      "DebugActionIndex": 328
+      "DebugActionIndex": 333
     },
     {
       "Annotation": "Generate Manifests Library/Bee/artifacts/Android/Manifest/LauncherManifestDiag.txt (+3 others)",
@@ -9150,12 +9215,12 @@
         282,
         284,
         286,
-        328
+        333
       ],
       "OverwriteOutputs": false,
       "AllowUnexpectedOutput": true,
       "Env": [],
-      "DebugActionIndex": 329
+      "DebugActionIndex": 334
     },
     {
       "Annotation": "CopyFiles /Users/madhursalvi/Desktop/Unity3d Projects/Card Game/Card_Match_Portfolio/Card Matching Game/Library/Bee/Android/Prj/Mono2x/Gradle/unityLibrary/symbols/armeabi-v7a/libmain.so",
@@ -9167,7 +9232,7 @@
       "Outputs": [
         "/Users/madhursalvi/Desktop/Unity3d Projects/Card Game/Card_Match_Portfolio/Card Matching Game/Library/Bee/Android/Prj/Mono2x/Gradle/unityLibrary/symbols/armeabi-v7a/libmain.so"
       ],
-      "DebugActionIndex": 330
+      "DebugActionIndex": 335
     },
     {
       "Annotation": "CopyFiles /Users/madhursalvi/Desktop/Unity3d Projects/Card Game/Card_Match_Portfolio/Card Matching Game/Library/Bee/Android/Prj/Mono2x/Gradle/unityLibrary/symbols/armeabi-v7a/libmonobdwgc-2.0.so",
@@ -9179,7 +9244,7 @@
       "Outputs": [
         "/Users/madhursalvi/Desktop/Unity3d Projects/Card Game/Card_Match_Portfolio/Card Matching Game/Library/Bee/Android/Prj/Mono2x/Gradle/unityLibrary/symbols/armeabi-v7a/libmonobdwgc-2.0.so"
       ],
-      "DebugActionIndex": 331
+      "DebugActionIndex": 336
     },
     {
       "Annotation": "CopyFiles /Users/madhursalvi/Desktop/Unity3d Projects/Card Game/Card_Match_Portfolio/Card Matching Game/Library/Bee/Android/Prj/Mono2x/Gradle/unityLibrary/symbols/armeabi-v7a/libunity.so",
@@ -9191,7 +9256,7 @@
       "Outputs": [
         "/Users/madhursalvi/Desktop/Unity3d Projects/Card Game/Card_Match_Portfolio/Card Matching Game/Library/Bee/Android/Prj/Mono2x/Gradle/unityLibrary/symbols/armeabi-v7a/libunity.so"
       ],
-      "DebugActionIndex": 332
+      "DebugActionIndex": 337
     },
     {
       "Annotation": "WriteText Library/Bee/artifacts/csharpactions/unity_app_guid_mknl.info",
@@ -9204,7 +9269,7 @@
       "Outputs": [
         "Library/Bee/artifacts/csharpactions/unity_app_guid_mknl.info"
       ],
-      "DebugActionIndex": 333
+      "DebugActionIndex": 338
     },
     {
       "Annotation": "GuidGenerator /Users/madhursalvi/Desktop/Unity3d Projects/Card Game/Card_Match_Portfolio/Card Matching Game/Library/Bee/Android/Prj/Mono2x/Gradle/unityLibrary/src/main/assets/bin/Data/unity_app_guid",
@@ -9331,12 +9396,12 @@
       ],
       "ToBuildDependencies": [
         6,
-        333
+        338
       ],
       "OverwriteOutputs": false,
       "AllowUnexpectedOutput": true,
       "Env": [],
-      "DebugActionIndex": 334
+      "DebugActionIndex": 339
     },
     {
       "Annotation": "WriteText /Users/madhursalvi/Desktop/Unity3d Projects/Card Game/Card_Match_Portfolio/Card Matching Game/Library/Bee/Android/Prj/Mono2x/Gradle/unityLibrary/src/main/resources/META-INF/com.android.games.engine.build_fingerprint",
@@ -9349,7 +9414,7 @@
       "Outputs": [
         "/Users/madhursalvi/Desktop/Unity3d Projects/Card Game/Card_Match_Portfolio/Card Matching Game/Library/Bee/Android/Prj/Mono2x/Gradle/unityLibrary/src/main/resources/META-INF/com.android.games.engine.build_fingerprint"
       ],
-      "DebugActionIndex": 335
+      "DebugActionIndex": 340
     },
     {
       "Annotation": "Player",
@@ -9583,16 +9648,21 @@
         320,
         321,
         322,
+        323,
         324,
         325,
         326,
         327,
         329,
+        330,
+        331,
+        332,
         334,
-        335
+        339,
+        340
       ],
       "OverwriteOutputs": false,
-      "DebugActionIndex": 336
+      "DebugActionIndex": 341
     }
   ],
   "FileSignatures": [
@@ -9901,8 +9971,8 @@
   "EmitDataForBeeWhy": 0,
         "NamedNodes": {
           "all_tundra_nodes": 0,
-          "SourceBuildPlayerFiles": 323,
-          "Player": 336
+          "SourceBuildPlayerFiles": 328,
+          "Player": 341
         }
 ,  "DefaultNodes": [
     0

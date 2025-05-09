@@ -252,7 +252,7 @@ ScriptsOnlyBuild:
     className: UnityOnBecameVisibleMessageListener
   - hash:
       serializedVersion: 2
-      Hash: d4ce88d55f9fc91d5ad2890569605c79
+      Hash: 8f466ebfdae988e30cfe733288f13736
     assemblyName: Assembly-CSharp
     namespaceName: 
     className: GameManager
