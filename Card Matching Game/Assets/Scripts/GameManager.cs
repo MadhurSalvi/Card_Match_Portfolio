@@ -11,12 +11,11 @@ public class GameManager : MonoBehaviour
     public GameObject cardPrefab;
     public Sprite[] cardSprites;
     public Vector2 gridSize = new Vector2(4, 4);
-    private float cardSize;
-    private float spacing;
+    private float cardSize, spacing;
 
     [Header("Game Settings")]
     public int score = 0;
-    public int baseMatchScore = 100;
+    public int comparescore = 100;
     public int mismatchPenalty = 10;
     public int comboMultiplier = 1;
     private int consecutiveMatches = 0;
@@ -26,6 +25,7 @@ public class GameManager : MonoBehaviour
     [Header("UI Elements")]
     public Text scoreText;
     public Text highScoreText;
+    public Text ComboScore;
     public GameObject gameOverPanel;
     public Text completionText;
 
@@ -45,7 +45,13 @@ public class GameManager : MonoBehaviour
         else if (Instance != this)
             Destroy(gameObject);
 
-        audioSource = GetComponent<AudioSource>();
+        // Add AudioSource if not present
+        if (!TryGetComponent<AudioSource>(out audioSource))
+        {
+            audioSource = gameObject.AddComponent<AudioSource>();
+            audioSource.playOnAwake = false;
+        }
+
     }
 
     void Start()
@@ -53,7 +59,7 @@ public class GameManager : MonoBehaviour
         ValidateSprites();
         CalculateCardDimensions();
         GenerateCardGrid();
-        LoadHighScore();
+        DisplayHighScore();
 
         if (gameOverPanel != null)
             gameOverPanel.SetActive(false);
@@ -165,7 +171,7 @@ public class GameManager : MonoBehaviour
         if (isMatch)
         {
             // Correct match
-            score += baseMatchScore * comboMultiplier;
+            score += comparescore * comboMultiplier;
             consecutiveMatches++;
             matchesFound++;
             PlaySound(matchSound);
@@ -210,10 +216,11 @@ public class GameManager : MonoBehaviour
     void UpdateScoreUI()
     {
         if (scoreText != null)
-            scoreText.text = "Score: " + score + " (Combo: x" + comboMultiplier + ")";
+            scoreText.text = "Score: " + score;
+            ComboScore.text = "Combo: x" + comboMultiplier + "";
     }
 
-    void LoadHighScore()
+    void DisplayHighScore()
     {
         if (highScoreText != null)
             highScoreText.text = "High Score: " + PlayerPrefs.GetInt("HighScore", 0);
@@ -226,7 +233,7 @@ public class GameManager : MonoBehaviour
         {
             PlayerPrefs.SetInt("HighScore", score);
             PlayerPrefs.Save();
-            LoadHighScore();
+            DisplayHighScore();
         }
     }
 
@@ -235,7 +242,7 @@ public class GameManager : MonoBehaviour
         if (gameOverPanel != null)
         {
             gameOverPanel.SetActive(true);
-            completionText.text = "Game Completed!\nFinal Score: " + score + "\nHigh Score: " + PlayerPrefs.GetInt("HighScore");
+            completionText.text = "Game Completed! Press Restart to Play again";
         }
     }
 

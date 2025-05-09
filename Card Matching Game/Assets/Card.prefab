@@ -147,7 +147,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   frontRenderer: {fileID: 3837663146540331123}
   backRenderer: {fileID: 251151629451047754}
-  flipDuration: 0.5
+  cardCollider: {fileID: 7611278620888150257}
   flipSound: {fileID: 8300000, guid: ce954b92c940f5c46aa7efef554cc271, type: 3}
 --- !u!1 &1502977727770725269
 GameObject:
