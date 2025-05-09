@@ -15,7 +15,7 @@ public class GameManager : MonoBehaviour
 
     [Header("Game Settings")]
     public int score = 0;
-    public int comparescore = 100;
+    public int comparescore = 100; //base scoring system
     public int mismatchPenalty = 10;
     public int comboMultiplier = 1;
     private int consecutiveMatches = 0;

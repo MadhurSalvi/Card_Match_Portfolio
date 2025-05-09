@@ -1,0 +1,19 @@
+<libraries>
+  <library
+      name="/Users/madhursalvi/Desktop/Unity3d Projects/Card Game/Card_Match_Portfolio/Card Matching Game/Library/Bee/Android/Prj/Mono2x/Gradle@@:unityLibrary::release"
+      jars="/Users/madhursalvi/Desktop/Unity3d Projects/Card Game/Card_Match_Portfolio/Card Matching Game/Library/Bee/Android/Prj/Mono2x/Gradle/unityLibrary/build/.transforms/b4c10f742a46cade7482e62c8c5a3bcd/transformed/out/jars/classes.jar:/Users/madhursalvi/Desktop/Unity3d Projects/Card Game/Card_Match_Portfolio/Card Matching Game/Library/Bee/Android/Prj/Mono2x/Gradle/unityLibrary/build/.transforms/b4c10f742a46cade7482e62c8c5a3bcd/transformed/out/jars/libs/R.jar:/Users/madhursalvi/Desktop/Unity3d Projects/Card Game/Card_Match_Portfolio/Card Matching Game/Library/Bee/Android/Prj/Mono2x/Gradle/unityLibrary/build/.transforms/b4c10f742a46cade7482e62c8c5a3bcd/transformed/out/jars/libs/unity-classes.jar"
+      resolved="Gradle:unityLibrary:unspecified"
+      folder="/Users/madhursalvi/Desktop/Unity3d Projects/Card Game/Card_Match_Portfolio/Card Matching Game/Library/Bee/Android/Prj/Mono2x/Gradle/unityLibrary/build/.transforms/b4c10f742a46cade7482e62c8c5a3bcd/transformed/out"
+      manifest="AndroidManifest.xml"
+      resFolder="res"
+      assetsFolder="assets"
+      lintJar="lint.jar"
+      publicResources="public.txt"
+      symbolFile="R.txt"
+      externalAnnotations="annotations.zip"
+      proguardRules="proguard.txt"/>
+  <library
+      name="__local_aars__:/Users/madhursalvi/Desktop/Unity3d Projects/Card Game/Card_Match_Portfolio/Card Matching Game/Library/Bee/Android/Prj/Mono2x/Gradle/unityLibrary/libs/unity-classes.jar:unspecified@jar"
+      jars="/Users/madhursalvi/Desktop/Unity3d Projects/Card Game/Card_Match_Portfolio/Card Matching Game/Library/Bee/Android/Prj/Mono2x/Gradle/unityLibrary/libs/unity-classes.jar"
+      resolved="__local_aars__:/Users/madhursalvi/Desktop/Unity3d Projects/Card Game/Card_Match_Portfolio/Card Matching Game/Library/Bee/Android/Prj/Mono2x/Gradle/unityLibrary/libs/unity-classes.jar:unspecified"/>
+</libraries>

@@ -28,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 532793165653786360}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 495.55908, y: 265.71603, z: -3.4506767}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -147,7 +147,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   frontRenderer: {fileID: 3837663146540331123}
   backRenderer: {fileID: 251151629451047754}
-  cardCollider: {fileID: 7611278620888150257}
+  flipDuration: 0.5
   flipSound: {fileID: 8300000, guid: ce954b92c940f5c46aa7efef554cc271, type: 3}
 --- !u!1 &1502977727770725269
 GameObject:

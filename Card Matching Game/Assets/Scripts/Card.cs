@@ -11,7 +11,7 @@ public class Card : MonoBehaviour
     [Header("Audio")]
     public AudioClip flipSound;
 
-    public int cardId;
+    private int cardId;
     private bool isFlipping = false;
     private bool isFlipped = false;
 
