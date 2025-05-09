@@ -39,6 +39,9 @@ ScriptsOnlyBuild:
     methodName: PlayGame
   - assembly: Assembly-CSharp
     fullTypeName: GameManager
+    methodName: GameQuit
+  - assembly: Assembly-CSharp
+    fullTypeName: GameManager
     methodName: ResetGame
   sceneClasses:
     Assets/Scenes/Card Matching Game.unity:
@@ -992,4 +995,4 @@ ScriptsOnlyBuild:
   scenePathNames:
   - Assets/Scenes/Main Scene.unity
   - Assets/Scenes/Card Matching Game.unity
-  playerPath: /Users/madhursalvi/Desktop/Unity3d Projects/Build_Card/CardMatching.apk
+  playerPath: /Users/madhursalvi/Desktop/Unity3d Projects/Builds/CardMatching.apk
