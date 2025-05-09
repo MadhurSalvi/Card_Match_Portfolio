@@ -259,4 +259,14 @@ public class GameManager : MonoBehaviour
         GenerateCardGrid();
         UpdateScoreUI();
     }
+
+
+    public void GameQuit()
+    {
+        Application.Quit();
+
+        #if UNITY_EDITOR
+                UnityEditor.EditorApplication.isPlaying = false;
+        #endif
+    }
 }

@@ -3,57 +3,17 @@
     {
       "type": "playerBuildTimingData",
       "msg": {
-        "build_event_id": "f53a4237e9a3146b3a9f3557d8eacecf",
-        "build_player": 9672,
-        "preprocess_player": 18,
-        "produce_player_script_assemblies": 3738,
-        "build_scripts_dlls": 173,
-        "writing_asset_files": 517,
-        "postprocess_built_player": 2680,
+        "build_event_id": "1be2259952eb8451bb34dbbd30dcae74",
+        "build_player": 44570,
+        "preprocess_player": 23,
+        "produce_player_script_assemblies": 974,
+        "build_scripts_dlls": 162,
+        "writing_asset_files": 41,
+        "postprocess_built_player": 9733,
         "node_summary_table": [
           {
             "name": "Csc",
-            "duration": 96
-          },
-          {
-            "name": "Csc",
-            "duration": 96
-          },
-          {
-            "name": "Csc",
-            "duration": 441
-          },
-          {
-            "name": "Csc",
-            "duration": 441
-          },
-          {
-            "name": "Csc",
-            "duration": 218
-          },
-          {
-            "name": "Csc",
-            "duration": 527
-          },
-          {
-            "name": "Csc",
-            "duration": 224
-          },
-          {
-            "name": "Csc",
-            "duration": 69
-          },
-          {
-            "name": "Csc",
-            "duration": 53
-          },
-          {
-            "name": "Csc",
-            "duration": 228
-          },
-          {
-            "name": "Csc",
-            "duration": 96
+            "duration": 87
           }
         ]
       },

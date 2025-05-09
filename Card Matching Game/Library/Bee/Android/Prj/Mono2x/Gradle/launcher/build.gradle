@@ -8,7 +8,7 @@ android {
     namespace "com.MadhurSalvi.CardMatchingGame"
     ndkPath "/Applications/Unity/Hub/Editor/2022.3.61f1/PlaybackEngines/AndroidPlayer/NDK"
 
-    compileSdkVersion 35
+    compileSdkVersion 36
     buildToolsVersion '34.0.0'
 
     compileOptions {
@@ -18,7 +18,7 @@ android {
 
     defaultConfig {
         minSdkVersion 22
-        targetSdkVersion 35
+        targetSdkVersion 36
         applicationId 'com.MadhurSalvi.CardMatchingGame'
         ndk {
             abiFilters 'armeabi-v7a'
